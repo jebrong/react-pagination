@@ -4,14 +4,16 @@ import { useFetch } from "./useFetch";
 
 function App() {
   const [page, setPage] = useState(1);
-  let { data, displayedData, loading } = useFetch(page);
-  let totalPages = Math.ceil(data.length / 6);
+  const [perPage, setPerPage] = useState(5);
+
+  let { data, displayedData, loading } = useFetch(page, perPage);
+  let totalPages = Math.ceil(data.length / perPage);
   let pageNumbers = [];
   for (let page = 0; page < totalPages; page++) {
     pageNumbers.push(page + 1);
   }
   const nextPage = () => {
-    if (page > data.length / 6) {
+    if (page > data.length / perPage) {
       return;
     }
     setPage((e) => {
@@ -32,9 +34,40 @@ function App() {
   } else {
     return (
       <div className="item-container">
-        {displayedData.map((item) => {
-          return <Follower key={item.id} {...item}></Follower>;
-        })}
+        <label>How many per Followers per Page?</label>
+        <br></br>
+        <button
+          className={perPage === 5 ? "active" : null}
+          onClick={() => {
+            setPerPage(5);
+            setPage(1);
+          }}
+        >
+          5
+        </button>
+        <button
+          onClick={() => {
+            setPerPage(10);
+            setPage(1);
+          }}
+          className={perPage === 10 ? "active" : null}
+        >
+          10
+        </button>
+        <button
+          className={perPage === 16 ? "active" : null}
+          onClick={() => {
+            setPerPage(16);
+            setPage(1);
+          }}
+        >
+          16
+        </button>
+        <div className="followers-container">
+          {displayedData.map((item) => {
+            return <Follower key={item.id} {...item}></Follower>;
+          })}
+        </div>
 
         <button
           className={"pre-button " + (page === 1 ? "disabled" : null)}

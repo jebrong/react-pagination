@@ -1,5 +1,5 @@
-export const createPages = (followersGroup, pageNumber) => {
-  let followersPerPage = 6;
+export const createPages = (followersGroup, pageNumber, perPage) => {
+  let followersPerPage = perPage;
   let currentPage = pageNumber;
   let indexOfLastFollower = followersPerPage * currentPage;
   let indexOfFirstFollower = indexOfLastFollower - followersPerPage;

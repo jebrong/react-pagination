@@ -10,9 +10,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  overflow: hidden;
+
   margin: 0;
+  margin-bottom: 50px;
 }
 
 img {
@@ -28,4 +28,11 @@ img {
 .disabled {
   pointer-events: none;
   opacity: 0.4;
+}
+
+.followers-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 80vh;
 }
